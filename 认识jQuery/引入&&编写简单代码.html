@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>引入jquery，编写简单的代码</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		body{
+			font-family:黑体;
+		}
+	</style>
+</head>
+<body>
+	<h1>在jQuery库中，$就是jQuery的简写形式</h1>
+	<h4>$("#foo")等价于jQuery("#foo")<br/>$.ajax等价于jQuery,ajax</h4>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			alert("Hello World 1!!");
+		});
+		$(document).ready(function(){
+			alert("Hello World!!2");
+		});
+
+
+		$(function(){
+			alert("Hello World3!!");
+		});
+
+		$(function(){
+			alert("Hello World4!!");
+		});
+	</script>
+
+	<br/><br/>
+	<h1>关于window.onload与$(document).ready()对比与简介</h1>
+	<ul>
+		<li>window.load不能同时编写多个，加入编写多个，只会执行最后一个，$(document).ready()则可以执行多个</li>
+		<li>$(document).ready(function(){};);可以简写为$(function(){};);</li>
+	</ul>
+</body>
+</html>
