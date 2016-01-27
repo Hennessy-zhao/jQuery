@@ -1,0 +1,41 @@
+body
+{
+	background-image: url(pic/001.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#land.col-md-3
+{
+	height: auto;
+	background-color: rgba(239, 242, 243, 0.97);
+	margin-top: 22%;
+	border-radius: 20px;
+	box-shadow:0 0 1px #CCCCCC, 0 0 5px #CCCCCC, 0 0 5px #CCCCCC, 0 0 5px #CCCCCC, 0 0 5px #CCCCCC, 0 0 5px #CCCCCC, 0 0 5px #CCCCCC, 0 0 5px #CCCCCC, 0 0 50px #CCCCCC, 0 0 150px #CCCCCC;
+					
+}
+
+#hennessy
+{
+	margin-top: 30px;
+	width: 90%;
+	font-size: 16px;
+	font-family: 幼圆;
+}
+
+#other
+{
+	margin-top: 20px;
+	margin-bottom: 30px;
+	width: 90%;
+	font-size: 16px;
+	font-family: 幼圆;
+}
+
+#name,#password{
+	width: 85%;
+}
+
+#hiddenn{
+	display: none;
+}

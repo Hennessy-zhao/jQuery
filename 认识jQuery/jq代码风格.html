@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery代码风格</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<link  rel="stylesheet" href="../jQuery/Public/css/bootstrap.min.css"/>
+	<script src="../jQuery/Public/js/bootstrap.js" ></script>
+	<style type="text/css">
+	.level2{
+		display: none;
+	}
+	.current{
+		font-size: 2em;
+	}
+	p{
+		font-family: 幼圆;
+		font-size: 1.6em;
+		margin-left: 10px;
+	}
+
+	.level3{
+		font-family: 微软雅黑;
+		font-size: 1.3em;
+		margin-left: 10px;
+		
+	}
+	</style>
+</head>
+<body>
+	<p>这是一个导航栏</p>
+	<div class="box">
+		<ul class="menu">
+			<li class="level1">
+				<a href="#none">衬衫</a>
+				<ul class="level2">
+					<li><a href="#none">短袖衬衫</a></li>
+					<li><a href="#none">长袖衬衫</a></li>
+					<li><a href="#none">短袖T恤</a></li>
+					<li><a href="#none">长袖T恤</a></li>			
+				</ul>
+			</li>
+			<li class="level1">
+				<a href="#none">卫衣</a>
+				<ul class="level2">
+					<li><a href="#none">开襟卫衣</a></li>
+					<li><a href="#none">套头卫衣</a></li>
+					<li><a href="#none">运动卫衣</a></li>
+					<li><a href="#none">童装卫衣</a></li>			
+				</ul>
+			</li>
+			<li class="level1">
+				<a href="#none">裤子</a>
+				<ul class="level2">
+					<li><a href="#none">短裤</a></li>
+					<li><a href="#none">休闲裤</a></li>
+					<li><a href="#none">牛仔裤</a></li>
+					<li><a href="#none">免烫卡其裤</a></li>			
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<br/><br/><br/>
+	<p>jq代码格式:</p>
+	<li class="level3">对于同一个对象，不超过三个操作的，可以写成一行</li>
+	<li class="level3">对于同一个对象有较多操作的，每一个操作写一行</li>
+	<li class="level3">对于所个对象的少量操作，可以每个对象写一行，如果涉及子元素，可以考虑适当的进行缩进</li>
+	<br/><br/>
+	<p>注意：最好复杂的代码加上注释以便自己和别人查阅</p>
+
+	<script type="text/javascript">
+		$(".level1>a").click(function(){				//当鼠标点击到a元素（他是class含有level1的子元素）
+			$(this).addClass("currrent")				//给当前元素添加一个current样式
+			.next().show()								//下一元素显示
+			.parent().siblings().children("a").removeClass("current")	//父元素的同辈元素的子元素<a>去掉一个current样式
+			.next().hide();								//他们的下一个元素隐藏
+			return false;
+		});
+	</script>
+</body>
+</html>
