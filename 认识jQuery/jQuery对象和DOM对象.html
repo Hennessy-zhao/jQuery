@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery对象和DOM对象</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<p class="p1">jQuery对象转变成DOM对象</p>
+	<p class="p2">jQuery对象不能使用DOM中的方法，但如果对jQuery提供的方法不熟悉，可以转变为DOM方法</p>
+	<b>1）</b>jQuery对象是一个类似数组的对象，可以通过index方法得到相应的DOM对象。代码如下<br/>
+	<p class="p3">var $cr=$("#cr");&nbsp&nbsp&nbsp//jQuery对象</p>
+	<p class="p3">var cr=$cr[0];&nbsp&nbsp&nbsp//DOM对象</p>
+	<p class="p3">alert(cr.checked);&nbsp&nbsp&nbsp//检测这个checkbox是否被选中了</p>
+	<b>2）</b>另一种方法是jQuery本身提供的，通过get(index)方法得到相应的DOM对象。代码如下<br/>
+	<p class="p3">var $cr=$("#cr");&nbsp&nbsp&nbsp//jQuery对象</p>
+	<p class="p3">var cr=$cr.get(0);&nbsp&nbsp&nbsp//DOM对象</p>
+	<p class="p3">alert(cr.checked);&nbsp&nbsp&nbsp//检测这个checkbox是否被选中了</p>
+	<br/><br/>
+	<p class="p1">DOM对象转变成jQuery对象</p>
+	<p class="p2">对于一个DOM对象，只需要用$()把DOM包装起来，就可以获得一个jQuery对象了。代码如下</p>
+	<p class="p3">var cr=document.getElementById("cr");&nbsp&nbsp&nbsp//获得DOM对象</p>
+	<p class="p3">var $cr=$(cr);&nbsp&nbsp&nbsp//获得jQuery对象</p>
+	<br/><br/><br/>
+	<p class="p1">强调：DOM对象才可以使用DOM方法，jQuery不能使用DOM方法</p>
+	<br/><br/>
+	<p class="p1">例子：</p>
+	<input type="checkbox" id="cr"><label>我已阅读上面制度</label><br/><br/><br/>
+	<p class="p2">其使用jQuery判定的方法代码为:</p>
+	<p class="p3">$(function(){</p>
+	<p class="p3">&nbsp&nbsp$cr=$("#cr");</p>
+	<p class="p3">&nbsp&nbsp$cr.click(function(){</p>
+	<p class="p3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp if ($cr.is(":checked")) {&nbsp&nbsp&nbsp//is(":checked")是jQuery中的方法，判断jQuery对象有没有被选中，返回布尔值</p>
+	<p class="p3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp alert("感谢您的支持，您可以继续操作!");</p>
+	<p class="p3">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp};</p>
+	<p class="p3">&nbsp&nbsp})</p>
+	<p class="p3">})</p>
+
+	<script type="text/javascript">
+		$(function(){
+			$cr=$("#cr");
+			$cr.click(function(){
+				if ($cr.is(":checked")) {				//is(":checked")是jQuery中的方法，判断jQuery对象有没有被选中，返回布尔值
+					alert("感谢您的支持，您可以继续操作!");
+				};
+			})
+		})
+	</script>
+</body>
+</html>

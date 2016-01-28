@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>解决jQuery库和其他库的冲突</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<p class="p1">在jQuery库中，几乎所有的插件都被限制在他的命名空间里，通常，全局对象都被很好地存储在jQuery命名空间里面，因此当把jQuery和其他库一起使用时，不会出现冲突</p>
+	<b>1)jQuery库在其他库之后导入</b>
+	<p class="p2">在其他库和jQuery库都导入完毕后，可以在任何时候调用jQuery.noConflict()函数来将变量$的控制权移交给其他库。示例如下：</p>
+	<p class="p3">&lsaquo; script type="text/javascript" src=" Prototype.js"&rsaquo;//引入Prototype库&lsaquo;/script&rsaquo;</p>
+	<p class="p3">&lsaquo; script type="text/javascript" src=" jquery-2.2.0.js"&rsaquo;//引入jQuery库&lsaquo;/script&rsaquo;</p>
+	<p class="p3">&lsaquo;script&rsaquo;</p> 
+	<p class="p3">jQuery.noConflict();		//将变量$的控制权移交给Prototype库</p>
+	<p class="p3">jQuery(function(){</p>
+	<p class="p3">&nbsp;&nbsp;jQuery("p").click(function(){</p>
+	<p class="p3">&nbsp;&nbsp;&nbsp;&nbsp;alert("111");</p>
+	<p class="p3">&nbsp;&nbsp;})</p>
+	<p class="p3">})</p>
+	<p class="p3">$("pp").style.display=none;  //使用prototype</p>
+	<p class="p3">&lsaquo;/script&rsaquo;</p><br/>
+	<p class="p2">此外，还有另一种选择，如果想确保jQuery库不会和其他库冲突，又想自定义一种快捷方式，可以用如下操作</p>
+	<p class="p3">var $j=jQuery.noConflict();</p>
+	<p class="p3">$j(function(){</p>
+	<p class="p3">&nbsp;&nbsp;$j("p").click(function(){</p>
+	<p class="p3">&nbsp;&nbsp;&nbsp;&nbsp;alert("111");</p>
+	<p class="p3">&nbsp;&nbsp;})</p>
+	<p class="p3">})</p>
+	<p class="p3">$("pp").style.display=none;  //使用prototype</p>
+	<br/><br/>
+	<b>2)jQuery库在其他库之前导入</b>
+	<p class="p2">如果是jQuery库在其他库之前就导入了，那么可以直接使用jQuery来做一些jQuery的工作，同时，可以用$()方法作为其他库的快捷方式，无需调用jQuery.noConflict()函数</p><br/><br/><br/>
+</body>
+</html>
