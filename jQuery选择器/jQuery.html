@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<p class="p1">一)简洁地写法</p>
+	<p class="p2">&nbsp;&nbsp;1)$("#id")代替document.getElementById("id")</p>
+	<p class="p2">&nbsp;&nbsp;2)$(".id")或许class为id的元素</p>
+	<p class="p2">&nbsp;&nbsp;3)$("id")代替document.getElementByTagName("id")，通过标签名获取HTML元素</p>
+	<br/><br/>
+	<p class="p1">二)完善的处理机制</p>
+	<p class="p2">&nbsp;&nbsp;1)jQuery可以避免某些错误，比如使用js改变一个id为cr的元素的css值时，若cr不存在，则会报错，而jQuery则不会，代码如下</p>
+	<p class="p3">$("#tt").css("color","red")&nbsp;&nbsp;//这里不用考虑$("#tt")是否存在</p>
+	<p class="p2">&nbsp;&nbsp;2)注意：当需要用jQuery检查某个元素是否存在时，不能用if($("#id")){}判断，应用以下代码</p>
+	<p class="p3">&nbsp;&nbsp;&nbsp;if($("#id").length>0){}</p>
+	<p class="p3">&nbsp;&nbsp;&nbsp;或者转换成DOM对象来判断</p>
+	<p class="p3">&nbsp;&nbsp;&nbsp;if($("#id")[0]){}</p>
+</body>
+</html>
