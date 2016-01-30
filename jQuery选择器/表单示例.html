@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+	body{
+		font-size: 1.2em;
+	}
+	</style>
+</head>
+<body>
+	<h3>注意：jQuery选择器从书33页开始！！</h3>
+	<br/><br/>
+	<h4>表单对象选择器一</h4>
+	<form id="form1" action="#">
+		可用元素:<input type="text" name="add" value="可用文本框"><br/><br/>
+		不可用元素:<input type="text" name="email" disabled="disabled" value="不可用文本框"><br/><br/>
+		可用元素:<input type="text" name="name" value="可用文本框"><br/><br/>
+		不可用元素:<input type="text" name="che" disabled="disabled" value="不可用文本框"><br/>
+		<br/>
+		多选框:<br/>
+		<input type="checkbox" name="newsletter" checked="checked" value="test1">test1
+		<input type="checkbox" name="newsletter" value="test2">test2
+		<input type="checkbox" name="newsletter" value="test3">test3
+		<input type="checkbox" name="newsletter" value="test4">test4
+		<input type="checkbox" name="newsletter" value="test5">test5
+		<br/><br/>
+		下拉列表1:<br/>
+		<select name="test" multiple="multiple" style="height:100ox">
+			<option>浙江</option>
+			<option selected="selected">湖南</option>
+			<option>北京</option>
+			<option selected="selected">天津</option>
+			<option>广州</option>
+			<option>湖北</option>
+		</select>
+		<br/><br/>
+		下拉列表2:<br/>
+		<select name="test2" multiple="multiple" style="height:100ox">
+			<option>浙江</option>
+			<option>湖南</option>
+			<option selected="selected">北京</option>
+			<option>天津</option>
+			<option>广州</option>
+			<option>湖北</option>
+		</select><br/><br/>
+		<button id="button1">改变</button>
+	</form>
+
+	<br/><br/><br/>
+	<h4>表单对象选择器二</h4>
+	<form id="form2" action="#">
+		<input type="button" value="Button"><br/>
+		<input type="checkbox" name="c">1
+		<input type="checkbox" name="c">2
+		<input type="checkbox" name="c">3<br/>
+		<input type="file"><br/>
+		<input type="hidden"><div style="display:none;">test</div><br/>
+		<input type="image"><br/>
+		<input type="password"><br/>
+		<input type="radio" name="a">1		
+		<input type="radio" name="a">2<br/>
+		<input type="reset"><br/>
+		<input type="submit" value="提交"><br/>
+		<input type="text"><br/>
+		<select>
+			<option>Option</option>
+		</select><br/>
+		<textarea></textarea><br/>
+		<button>Button</button><br/><br/>
+	</form>
+		<button id="button2">查看</button>
+
+	<script type="text/javascript">
+		$(function(){
+			$("#button1").click(function(){
+				$("#form1 input:enabled").val("这里变化了！！");						//改变表单内可用input元素的值
+				$("#form1 input:disabled").val("这里变化了！！");						//改变表单内不可用input元素的值
+				alert("个数为："+$("#form1 input:checked").length);			 			//获取多选框中选中的个数
+				alert($("select :selected").text());			//获取下拉框被选中的内容
+			})
+		})
+
+		$(function(){
+			$("#button2").click(function(){
+				$inputnum=$("#form2 :input").length;		//表单元素个数
+				$textnum=$("#form2 :text").length;
+				$passwordnum=$("#form2 :password").length;
+				$radionum=$("#form2 :radio").length;
+				$checkboxnum=$("#form2 :checkbox").length;
+				$submitnum=$("#form2 :submit").length;
+				$imagenum=$("#form2 :image").length;
+				$resetnum=$("#form2 :reset").length;
+				$buttonnum=$("#form2 :button").length;
+				$filenum=$("#form2 :file").length;
+				$hiddennum=$("#form2 :hidden").length;
+				alert(" input个数："+$inputnum+"\n text个数："+$textnum+"\n password个数:"+$passwordnum+"\n radio个数："+$radionum+"\n checkbox个数:"+$checkboxnum+"\n submit个数："+$submitnum+"\n image个数："+$imagenum+"\n reset个数："+$resetnum+"\n button个数："+$buttonnum+"\n file个数："+$filenum+"\n hidden个数："+$hiddennum);
+			})
+		})
+	</script>
+</body>
+</html>

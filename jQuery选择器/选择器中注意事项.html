@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>选择器中注意事项</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<p class="p1">
+		1)选择其中含有：“.”，“#”，“[”，“)”等特殊字符
+	</p>
+	<p class="p2">
+		根据W3C规定，属性值中是不能含有这些特殊字符的，但在实际项目中偶尔会遇到表达式中含有“#”和“.”等特殊字符，如果按照普通方式去处理出来的话就会出错，解决此类错误的方法是使用转义字符转义，例如
+	</p>
+	<p class="p3">
+		如果一个元素的id="id#b"，则应该用$("#id\\#b");来获取
+	</p>
+	<p class="p3">
+		如果一个元素的id="id[1]"，则应该用$("#id\\[1\\]");来获取
+	</p>
+	<br/>
+	<p class="p1">
+		2)属性选择器@符号问题
+		</p>
+	<p class="p2">
+		在jQuery版本升级过程中，jQuery在1.3.1版本中彻底放弃了1.1.0版本遗留下来的@符号问题，假如你使用1.3.1以上版本，就不需要在属性前添加@符号如
+	</p>
+	<p class="p3">
+		$("div[@title='test']");正确写法是$("div[title='test']");
+	</p>
+	<p class="p2">
+		注意：如果你的项目中已使用较早的jQuery代码和插件，若把jQuery更新后，出现代码出错或不能运行，那很有可能是代码中出现了属性选择器@符号而引起的
+	</p>
+	<br/>
+	<p class="p1">
+		3)选择其中含有空格的注意事项
+	</p>
+	<p class="p2">
+		选择其中空格也是不容忽视的，多一个空格或少一个空格也许会得到截然不同的后果，例如
+	</p>
+	<p class="p3">
+		var $t=$(".test :hidden");		//带空格，此代码是选取class为“test”的元素里面的隐藏元素
+	</p>
+	<p class="p3">
+		var $t=$(".test:hidden");		//带空格，此代码是选取隐藏的class为“test”的元素		
+	</p>
+	<br/><br/><br/>
+</body>
+</html>

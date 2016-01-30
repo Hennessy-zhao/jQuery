@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>案例研究，某网站品牌列表的效果</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		li{
+			list-style: none;
+		}
+		.promoted{
+			font-weight: bolder;
+		}
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="SubCategoryBox">
+		<ul>
+			<li><a href="#">佳能</a><i>(30440)</i></li>
+			<li><a href="#">索尼</a><i>(27220)</i></li>
+			<li><a href="#">三星</a><i>(20808)</i></li>
+			<li><a href="#">尼康</a><i>(17821)</i></li>
+			<li><a href="#">松下</a><i>(30440)</i></li>
+			<li><a href="#">卡西欧</a><i>(30440)</i></li>
+			<li><a href="#">富士</a><i>(30440)</i></li>
+			<li><a href="#">柯达</a><i>(30440)</i></li>
+			<li><a href="#">宾得</a><i>(30440)</i></li>
+			<li><a href="#">理光</a><i>(30440)</i></li>
+			<li><a href="#">奥林巴斯</a><i>(30440)</i></li>
+			<li><a href="#">明基</a><i>(30440)</i></li>
+			<li><a href="#">爱国者</a><i>(30440)</i></li>
+			<li><a href="#">其他品牌相机</a><i>(30440)</i></li>
+
+		</ul>
+	</div>
+	<div class="showmore">
+		<a href="#"><span>显示全部品牌</span></a>
+	</div>
+	<br/><br/>
+	<p class="p1">运用到的知识补充：</p>
+	<p class="p2">
+		1)show():显示隐藏的匹配元素
+	</p>
+	<p class="p2">
+		2)hide():隐藏显示的匹配元素
+	</p>
+	<p class="p2">
+		3)css(name,value):给元素设置样式
+	</p>
+	<p class="p2">
+		4)text(string):设置所有匹配元素的文本内容
+	</p>
+	<p class="p2">
+		5)filter(expr):筛选出与指定表达式匹配的元素集合，其中exper可以是多个选择器的组合。注意区分它和find()方法，find()会在元素内寻找匹配元素，而filter()是筛选元素，一个是对它的子集操作，一个是对自身集合元素进行筛选
+	</p>
+	<p class="p2">
+		6)addClass(class):未匹配的元素添加指定的类名
+	</p>
+
+</body>
+<script type="text/javascript">
+	//这段代码是自己写的
+	// $(function(){
+	// 	$("li:gt(5)").css("display","none");		//加载完毕之后将大于6的li隐藏
+	// 	$("li:last").css("display","block");				//将最后一条显示出来
+	// })
+	// $(function(){
+	// 	$(".showmore>a").click(function()
+	// 	{
+	// 		if($(".showmore>a>span").text()=="显示全部品牌")	//当按钮显示为显示全部品牌时
+	// 		{
+	// 			$(".showmore>a>span").text("精简显示品牌");		//将显示全部品牌改为精简显示品牌
+	// 			$("li:lt(6)").css("fontWeight","bolder");		//将前6项加粗
+	// 			$("li:gt(5)").css("display","block");			//将大于6的项目显示
+	// 		}
+	// 		else
+	// 		{
+	// 			$(".showmore>a>span").text("显示全部品牌");		
+	// 			$("li:lt(6)").css("fontWeight","normal");
+	// 			$("li:gt(5)").css("display","none");
+	// 			$("li:last").css("display","block");
+	// 		}
+	// 	})
+	// })
+
+	//以下为书上的范例，书57页
+	$(function(){
+		var $category=$('ul li:gt(5):not(:last)');
+		$category.hide();
+		var $toggleBtn=$("div.showmore>a");
+		$toggleBtn.click(function(){
+			if ($category.is(":visible")) {
+				$category.hide();
+				$(this).find('span').text("显示全部名牌");
+				$("ul li").removeClass("promoted");
+			}
+			else
+			{
+				$category.show();
+				$(this).find('span').text("精简显示名牌");
+				$("ul li").filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')").addClass("promoted");
+			}
+			return false;
+		})
+	})
+</script>
+</html>
