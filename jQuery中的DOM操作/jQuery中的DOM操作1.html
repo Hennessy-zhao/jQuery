@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery中的DOM操作</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+			color: black;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+			color: black;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+			color: black;
+		}
+	</style>
+</head>
+<body>
+	<h2>建立一颗DOM树：</h2><br/>
+	<p class="p2" title="选择你最喜欢的水果">你最喜欢的水果</p>
+	<ul>
+		<li title="苹果">苹果</li>
+		<li title="橘子">橘子</li>
+		<li title="菠萝">菠萝</li>
+	</ul>
+	<p class="p1">一）获取节点</p>
+	<p class="p2">1)获取ul里面第2个li节点</p>
+	<button id="button1">查找元素节点</button><br/>
+	<p class="p2">2)获取p节点的title属性</p>
+	<p class="p3">可以使用attr()方法获取它的各种属性的值</p>
+	<button id="button2">查找属性节点</button>
+	<br/>
+	<p class="p1">二）创建节点，插入节点</p>
+	<p class="p2">1)创建节点</p>
+	<button id="button3">创建节点</button>
+	<p class="p2">注意：</p>
+	<p class="p3">&nbsp;&nbsp;1)动态创建的新元素点不会自动添加到文档中，而是需要使用其他方法将其茶如文档中</p>
+	<p class="p3">&nbsp;&nbsp;2)当创建单个元素时，要注意闭合标签和使用标准的XHTML格式，例如创建一个p元素，可以使用$("&lsaquo;p/&rsaquo;")或者$("&lsaquo;p&rsaquo;&lsaquo;/p&rsaquo;")</p>
+	<p class="p2">2)插入节点，以下为插入节点方法：</p>
+	<p class="p3">append(),appendTo(),prepend(),prependTo(),after(),insertAfter(),before(),insertBefore()</p>
+	<br/>
+	<p class="p1">三）删除节点</p>
+	<p class="p2">1)remove方法：此节点所包含的所有后代节点也同时被删除，也可以使用remove()方法和append()方法合作一起移动一个节点</p>
+	<button id="button4">删除节点</button>
+	<p class="p2">2)detach方法：从DOM中去掉所有匹配元素，但需要注意的是，这个方法不会把匹配的元素从jQuery对象中删除，因而可以在将来继续使用这些元素</p>
+	<button id="button5">删除节点</button>
+	<p class="p2">3)empty方法：严格来说，empty()方法不是删除节点，而是清空节点，它能清空元素中所有的后代节点。</p>
+	<button id="button6">删除节点</button>
+	<br/>
+	<p class="p1">四）复制节点</p>
+	<p class="p2">请点击上面的li中出现的进行复制</p>
+	<p class="p3">使用clone()方法对元素进行复制，如果clone()里面加上true，那么复制成的元素也拥有被复制的能力，如果不加true，则没有</p>
+	<br/>
+	<p class="p1">五）替换节点</p>
+	<p class="p2">1)replaceWith()例题如下</p>
+	<p class="p3">$("p").replaceWith("&lsaquo;strong&rsaquo;你最不喜欢的水果&lsaquo;/strong&rsaquo;");	//将p替换成replaceWith里面的内容</p>
+	<p class="p2">2)replaceAll()例题如下</p>
+	<p class="p3">$("&lsaquo;strong&rsaquo;你最不喜欢的水果&lsaquo;/strong&rsaquo;").replaceAll("p")	//将p替换成前面括号里面的内容</p>
+	<br/>
+	<p class="p1">六）包裹节点</p>
+	<p class="p2">如果想要某个节点用其他标记包裹起来，可以用以下方法</p>
+	<p class="p2">1)wrap()方法，例子见下面script里面</p>
+	<p class="p2">2)wrapAll(),用法与wrap一致，区别在于，wrap是将满足条件的每一条单独进行包裹，而wrapAll则是将所用满足条件的内容用一个标签全部包裹在一起</p>
+	<p class="p2">3)wraplnner(),该方法是将满足条件的元素的子元素包裹起来</p>
+</body>
+<script type="text/javascript">
+	//查找元素节点的文本内容
+	$("#button1").click(function(){
+		var $li=$("ul li:eq(1)").text();
+		alert($li);
+	});
+
+	//查找元素的title属性
+	$("#button2").click(function(){
+		var $p1=$("p:eq(0)").attr("title");
+		alert($p1);
+	});
+	//创建节点
+	$("#button3").click(function(){
+		var $li1=$("<li title='香蕉'>香蕉</li>");
+		var $li2=$("<li title='雪梨'>雪梨</li>");
+		$("ul").append($li1);
+		$("ul").append($li2);
+	});
+
+	//删除节点
+	//1)remove方法
+	$("#button4").click(function(){
+		//删除第二个li元素
+		$("ul li:eq(1)").remove();
+		//删除li元素中title不等于菠萝的元素
+		$("ul li").remove("li[title!=菠萝]");
+	});
+	//2)detach方法
+	$("#button5").click(function(){
+		//删除第二个li元素
+		$("ul li:eq(1)").detach();
+	});
+	//3)empty方法
+	$("#button6").click(function(){
+		//删除第二个li元素
+		$("ul li:eq(1)").empty();		//执行后第二个li元素的内容消失，但是前面的·依然存在
+	});
+
+	//复制节点
+	$("ul li").click(function(){
+		//复制当前节点并将它添加到ul里面
+		$(this).clone(true).appendTo("ul");		//如果clone()里面加上true，那么复制成的元素也拥有被复制的能力，如果不加true，则没有
+	});
+
+	//包裹节点
+	//1)wrap方法
+	$("ul li").click(function(){
+		$(this).wrap("<strong></strong>");
+	})
+</script>
+</html>
