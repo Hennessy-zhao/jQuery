@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery中的DOM操作2</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+			color: black;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+			color: black;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+			color: black;
+		}
+
+		.another{
+			font-weight: bolder;
+		}
+	</style>
+</head>
+<body>
+	<p class="p1">一）属性操作</p>
+	<p class="p2">在jQuery中，用attr()方法来获取和设置元素属性，removeAttr()方法来删除元素属性</p>
+	<p class="p2">1)获取属性和设置属性</p>
+	<p class="p3">&nbsp;&nbsp;1)获取属性：使用attr(): var $para=$("p").attr("title");</p>
+	<p class="p3">&nbsp;&nbsp;2)设置属性值：使用attr(): $("p").attr("title","your title");</p>
+	<p class="p3">&nbsp;&nbsp;3)设置多个属性值：使用attr(): $("p").attr("title":"your title","name":"test");</p>
+	<p class="p2">2)删除属性</p>
+	<p class="p3">&nbsp;&nbsp;使用removeAttr()方法：$("p").removeAttr("title");</p>
+	<br/>
+	<p class="p1">二）样式操作</p>
+	<p class="p2">1)获取样式和设置样式</p>
+	<p class="p3">&nbsp;&nbsp;1)获取样式：var $para=$("p").attr("class");</p>
+	<p class="p3">&nbsp;&nbsp;2)设置样式：var $("p").attr("class","high");</p>
+	<p class="p2">2)追加样式</p>
+	<p class="p3">&nbsp;&nbsp;1)追加样式使用addClass()方法：$("p").addClass("another");</p>
+	<p class="p3">&nbsp;&nbsp;2)注意：</p>
+	<p class="p3">&nbsp;&nbsp;&nbsp;&nbsp;1)如果给一个元素添加了多个class值，那么就相当于合并了他们的样式</p>
+	<p class="p3">&nbsp;&nbsp;&nbsp;&nbsp;1)如果有不同的class设定了同一样式属性，则后者覆盖前者</p>
+	<p class="p2">3)移除样式</p>
+	<p class="p3">&nbsp;&nbsp;1)使用removeClass()方法来移出样式：$("p").removeClass("high");</p>
+	<p class="p3">&nbsp;&nbsp;2)如果要删除两个及以上个样式，可以：$("p").removeClass("high").removeClass("another")或者$("p").removeClass("high another")</p>
+	<p class="p3">&nbsp;&nbsp;3)如果要移除所有的样式，可以：$("p").removeClass();</p>
+	<p class="p2">4)切换样式</p>
+	<p class="p3">jQuery提供了一个toggleClass()方法来进行样式重复切换，如果类名存在则删除它，如果类名不存在，则添加他:$("p").toggleClass("another");实例如下：</p>
+	<p class="p3">~~~这是一个点击切换样式的例子~~~</p>
+	<p class="p2">5)判断是否含有某个样式</p>
+	<p class="p3">&nbsp;&nbsp;使用hasClass()来判断是否含有某个样式，返回布尔值，有则返回是，没有泽返回不是，点击下列按钮判断上面“这是一个点击切换样式的按钮”是否含有another这个样式</p>
+	<button id="button1">点击判断</button>
+	<br/>
+	<p class="p1">设置和获取HTML,文本和值</p>
+	<p class="p2">1)html()方法</p>
+	<p class="p2">&nbsp;此类方法相当于Javascript里面的innerHTML属性，主要用来获取和设置某个元素的HTML内容，例子如下：</p>
+	<p class="p3" id="pp1"><i>~~啦啦啦啦啦啦啦啦~~</i></p>
+	<button id="button2">点击获取HTML内容</button>
+	<button id="button3">点击设置HTML内容</button>
+	<p class="p2">2)text()方法</p>
+	<p class="p2">&nbsp;此类方法相当于Javascript里面的innerText属性，主要用来获取和设置某个元素的文本内容，例子如下：</p>
+	<p class="p3" id="pp2"><i>~~啦啦啦啦啦啦啦啦~~</i></p>
+	<button id="button4">点击获取文本内容</button>
+	<button id="button5">点击设置文本内容</button>
+	<p class="p2">3)val()方法</p>
+	<p class="p3"></p>
+
+	<script type="text/javascript">
+		//重复切换样式
+		$(".p3").click(function(){
+			$(this).toggleClass("another");
+		});
+
+		//判断是否含有某样式
+		$("#button1").click(function(){
+			if ($(".p3").hasClass("another")) 
+			{
+				alert("有变粗的样式");
+			}
+			else
+			{
+				alert("没有变粗的样式");
+			}
+		});
+
+		//点击获取HTML内容
+		$('#button2').click(function(){
+			$para=$("#pp1").html();
+			alert($para);
+		})
+
+		//点击设置HTML内容
+		$('#button3').click(function(){
+			$para=$("#pp1").html("<strong>12345</strong>");
+		})
+
+		//点击获取文本内容
+		$('#button4').click(function(){
+			$para=$("#pp2").text();
+			alert($para);
+		})
+
+		//点击设置文本内容
+		$('#button5').click(function(){
+			$para=$("#pp2").html("<strong>我我我我</strong>");
+		})
+	</script>
+</body>
+</html>
