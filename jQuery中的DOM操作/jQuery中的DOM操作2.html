@@ -59,7 +59,7 @@
 	<p class="p3">&nbsp;&nbsp;使用hasClass()来判断是否含有某个样式，返回布尔值，有则返回是，没有泽返回不是，点击下列按钮判断上面“这是一个点击切换样式的按钮”是否含有another这个样式</p>
 	<button id="button1">点击判断</button>
 	<br/>
-	<p class="p1">设置和获取HTML,文本和值</p>
+	<p class="p1">三）设置和获取HTML,文本和值</p>
 	<p class="p2">1)html()方法</p>
 	<p class="p2">&nbsp;此类方法相当于Javascript里面的innerHTML属性，主要用来获取和设置某个元素的HTML内容，例子如下：</p>
 	<p class="p3" id="pp1"><i>~~啦啦啦啦啦啦啦啦~~</i></p>
@@ -71,8 +71,33 @@
 	<button id="button4">点击获取文本内容</button>
 	<button id="button5">点击设置文本内容</button>
 	<p class="p2">3)val()方法</p>
-	<p class="p3"></p>
-
+	<p class="p2">&nbsp;&nbsp;1)此类方法相当于Javascript里面的value属性，可以用来设置和获取元素的值，例子如下：</p>
+	<input type="text" value="请输入用户名" id="username"><br/>
+	<p class="p2">&nbsp;&nbsp;2)val()方法还有另外一个用处，就是它可以使select,checkbox,radio相应的选项被选中，例子如下：</p>
+	<select id="single">
+		<option>选择一号</option>
+		<option>选择二号</option>
+		<option>选择三号</option>
+	</select><br/><br/>
+	<select id="multiple" multiple="multiple" style="height:120px;">
+		<option selected="selected">选择一号</option>
+		<option>选择二号</option>
+		<option>选择三号</option>
+		<option>选择四号</option>
+		<option selected="selected">选择五号</option>
+	</select><br/><br/>
+	<input type="checkbox" value="check1">多选一
+	<input type="checkbox" value="check2">多选二
+	<input type="checkbox" value="check3">多选三
+	<input type="checkbox" value="check4">多选四
+	<br/><br/>
+	<input type="radio" value="radio1">单选一
+	<input type="radio" value="radio2">单选二
+	<input type="radio" value="radio3">单选三<br/><br/>
+	<button id="button6">点击选中</button>
+	<br/><br/><br/>
+	<p class="p1">四）遍历节点</p>
+	
 	<script type="text/javascript">
 		//重复切换样式
 		$(".p3").click(function(){
@@ -111,6 +136,33 @@
 		//点击设置文本内容
 		$('#button5').click(function(){
 			$para=$("#pp2").html("<strong>我我我我</strong>");
+		})
+
+
+		//档鼠标聚焦,value值消失，当聚焦结束，如果value没有值，则恢复原来的value
+		$("#username").focus(function(){			//获取焦点
+			if ($(this).val()=="请输入用户名") 		//也可以写成if ($(this).val()==defaultValue)
+			{
+				$(this).val("");
+			};
+		});
+
+		$("#username").blur(function(){				//失去焦点
+			if ($(this).val()=="") 
+			{
+				$(this).val("请输入用户名");
+			};
+		});
+
+		//利用val来选中表单框内的内容
+		$("#button6").click(function(){
+			$("#single").val("选择二号");			//也可以用attr	$("#single option:eq(1)").attr("selected","true");
+
+			$("#multiple").val(["选择二号","选择三号"]);		//以数组的形式赋值
+
+			$(":checkbox").val(["check2","check3"]);
+
+			$(":radio").val(["radio2"]);			//也可以用attr	$("[value=radio2]").attr("selected","true");
 		})
 	</script>
 </body>
