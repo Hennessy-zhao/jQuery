@@ -22,6 +22,7 @@
 			font-family: 幼圆;
 			margin-left: 20px;
 			color: black;
+			background-repeat: no-repeat;
 		}
 
 		.another{
@@ -97,7 +98,54 @@
 	<button id="button6">点击选中</button>
 	<br/><br/><br/>
 	<p class="p1">四）遍历节点</p>
-	
+	<p class="p2">1)children()方法</p>
+	<p class="p2">&nbsp;&nbsp;该方法用于取得匹配元素的子元素集合，例子如下:</p>
+	<p class="p3">&nbsp;$ul=("ul").children();</p>
+	<p class="p3">&nbsp;for(var i=0,len=$ul.length;i&lsaquo;len;i++)</p>
+	<p class="p3">&nbsp;&nbsp;alert($ul[i].innerHTML)</p>
+	<p class="p2">2)next()方法</p>
+	<p class="p2">&nbsp;&nbsp;该方法用来取得匹配元素后面紧邻的同辈元素</p>
+	<p class="p2">3)prev()方法</p>
+	<p class="p2">&nbsp;&nbsp;该方法用来取得匹配元素前面紧邻的同辈元素</p>
+	<p class="p2">4)siblings()方法</p>
+	<p class="p2">&nbsp;&nbsp;该方法用来取得匹配元素前后所有的同辈元素</p>
+	<p class="p2">5)closest()方法</p>
+	<p class="p2">&nbsp;&nbsp;该方法用于取得最近的匹配元素。首先检查当前元素是否匹配，如果匹配则直接返回元素本身。如果不匹配则向上查找父元素，逐级向上直到找到匹配选择器的元素。如果什么都没找到则返回一个空的jQuery对象</p>
+	<p class="p2">6)parent(),parents()的区别</p>
+	<p class="p3">&nbsp;&nbsp;1)parent():获得集合中每个匹配元素的父级元素</p>
+	<p class="p3">&nbsp;&nbsp;2)parents():获得集合中每个匹配元素的祖先元素</p>
+	<br/><br/>
+	<p class="p1">五）CSS-DOM操作</p>
+	<p class="p2">CSS-DOM操作简单来说就是读取和设置style对象的各种属性</p>
+	<p class="p2">1)可以直接利用css()方法获取元素的样式属性：</p>
+	<p class="p3">$("p").css("color");</p>
+	<p class="p2">2)可以用css()方法设置某个元素的单个样式和多个样式</p>
+	<p class="p3">$("p").css("color,"yellow");</p>
+	<p class="p3">$("p").css({"fontSize":"30px","backgroundColor":"yellow"});</p>
+	<p class="p3">&nbsp;注意：</p>
+	<p class="p3">&nbsp;&nbsp;1)如果值是数字，则会自动转化为像素值</p>
+	<p class="p3">&nbsp;&nbsp;2)在css()方法中，如果属性带有"-"符号，例如font-size,要使用驼峰式写法如fontSize</p>
+	<p class="p3">&nbsp;&nbsp;3)建议都带上引号，养成良好习惯</p>
+	<p class="p2">3)透明度的设置</p>
+	<p class="p3">可以直接使用opacity属性：$("p").css("opacity","0.5");</p>
+	<p class="p2">4)如果需要获取某个元素的height值，可以用以下两种方式</p>
+	<p class="p3">&nbsp;1)用css(): $("p").css("height");</p>
+	<p class="p3">&nbsp;2)用height(),它的作用是获得匹配元素当前计算的高度值（px）: $("p").height();</p>
+	<p class="p3">&nbsp;3)height()也可以用来设置元素高度，如果传的值是数字，默认单位是px: $("p").height(100)也可以$("p").height("10em");</p>
+	<p class="p3">&nbsp;4)与height()相匹配的同时也有一个width()，其用法和height()相一致</p>
+	<p class="p2">5)在css-DOM中，关于元素定位有以下几个常用方法</p>
+	<p class="p3">&nbsp;1)offset()方法，它的作用是获取元素在当前视窗的相对偏移，其中返回的对象包含两个属性，即top和left:</p>
+	<p class="p3">&nsbp;&nbsp;var offset=$("p").offset();</p>
+	<p class="p3">&nbsp;&nbsp;var left=offset.left;		//获取左偏移</p>
+	<p class="p3">&nbsp;&nbsp;var right=offset.right;	//获取右偏移</p>
+	<p class="p3">&nbsp;2)position()方法，它的作用是获取元素相对于最近的一个position样式属性设置为relative或者absolute的祖父节点的相对偏移，与offset()一样，他返回的对象也包括两个属性，即top和left</p>
+	<p class="p3">&nsbp;&nbsp;var position=$("p").position();</p>
+	<p class="p3">&nbsp;&nbsp;var left=position.left;		//获取左偏移</p>
+	<p class="p3">&nbsp;&nbsp;var right=position.right;	    //获取右偏移</p>
+	<p class="p3">&nbsp;4)scrollTop()方法和scrollLeft()方法，主要作用是获取元素的滚动条距顶端的距离和距左边的距离</p>
+	<p class="p3">&nbsp;&nbsp;1)获取滚动条距离：$("p").srcollTop();   $("p").scrollLeft();</p>
+	<p class="p3">&nbsp;&nbsp;2)控制元素的滚动条滚动到指定位置：$("p").srcollTop(300);   $("p").scrollLeft(300);</p>
+	<br/><br/>
 	<script type="text/javascript">
 		//重复切换样式
 		$(".p3").click(function(){

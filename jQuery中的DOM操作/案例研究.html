@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>案例研究--某网站的超链接和图片提示效果</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+			color: black;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+			color: black;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+			color: black;
+		}
+	</style>
+</head>
+<body>
+	<p class="p1">一）超链接提示效果</p>
+	<p class="p2">在现代的浏览器中，他们已经自带了超链接提示，只需要在超链接中加入title属性就可以了，然而这个提示效果响应非常缓慢，考虑到良好的人机交互，需要的是当鼠标移动到超链接的那一瞬间，就出现提示。这时就需要移出a标签中的title提示效果，自己手动做一个类似的功能</p>
+	<p><a href="#" class="tooltip" title="这是我的超链接提示1.">提示1</a></p>
+	<p><a href="#" class="tooltip" title="这是我的超链接提示2.">提示2</a></p>
+	<p><a href="#" title="这是自带提示1.">自带提示1</a></p>
+	<p><a href="#" title="这是自带提示2.">自带提示2</a></p>
+
+	<p class="p1">二）修改代码变成图片提示效果</p>
+	<p class="p2">经典耽美小说</p>
+	<a href="Pic/001.jpg" title="花容天下" class="pic"><img src="Pic/001.jpg" alt="花容天下" width="100px" height="100px"></a>&nbsp;&nbsp;
+	<a href="Pic/002.jpg" title="天神右翼" class="pic"><img src="Pic/002.jpg" alt="天神右翼" width="100px" height="100px"></a>&nbsp;&nbsp;
+	<a href="Pic/003.jpg" title="霍比特人同人" class="pic"><img src="Pic/003.jpg" alt="霍比特人同人" width="100px" height="100px"></a>&nbsp;&nbsp;
+
+
+
+	<script type="text/javascript">
+		//超链接示例
+		$(function(){
+			var x=10;
+			var y=10;
+			$("a.tooltip").mouseover(function(e){		//当鼠标放在上面时
+				this.myTitle=this.title;
+				this.title="";
+				//创建div元素
+				var tooltip="<div id='top'>"+this.myTitle+"</div>";
+				$("body").append(tooltip);
+				$("#top").css({
+					"position":"absolute",
+					"top":(e.pageY+y)+"px",
+					"left":(e.pageX+x)+"px"
+				}).show("fast");
+			}).mouseout(function(){						//当鼠标离开时
+				this.title=this.myTitle;
+				$("#top").remove();
+			}).mousemove(function(e){					//当鼠标移动
+				$("#top").css({
+					"position":"absolute",
+					"top":(e.pageY+y)+"px",
+					"left":(e.pageX+x)+"px"
+				});
+			});
+		})
+		//图片示例
+		$(function(){
+			var x=10;
+			var y=220;
+			$("a.pic").mouseover(function(e){
+				this.Mytitle=this.title;
+				this.title="";
+				container="<div id='container'></div>";
+				pic="<img src='"+this.href+"' width='400px' height='400px' alt='产品预览图'>";
+				message="<div id='message'>点击查看小说"+this.Mytitle+"</div>";
+				$("body").append(container);
+				$("#container").append(pic);
+				$("#container").append(message);
+				$("#message").css({
+					"backgroundColor":"black",
+					"color":"white"
+				});
+				$("#container").css({
+					"position":"absolute",
+					"top":(e.pageY-y)+"px",
+					"left":(e.pageX+x)+"px"
+				}).show("fast");
+
+			}).mouseout(function(){
+				this.title=this.Mytitle;
+				$("#container").remove();
+
+			}).mousemove(function(e){
+				$("#container").css({
+					"position":"absolute",
+					"top":(e.pageY-y)+"px",
+					"left":(e.pageX+x)+"px"
+				});
+			});
+		})
+	</script>
+</body>
+</html>
