@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery中的事件</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		li{
+			list-style: none;
+		}
+		.promoted{
+			font-weight: bolder;
+		}
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+		}
+		table.tr{
+			border-bottom:1px solid black;
+		}
+		.content{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<p class="p1">一）加载DOM</p>
+	<p class="p2">1)执行时机</p>
+	<p class="p2">第一章时讲过$(document).ready()方法和window.onload的区别，前者只需要DOM就绪就可以执行，而后者需要所有内容都加载完毕才可以执行，但是在jq中，如果需要所有的内容加载完毕才能执行，可以使用load()方法:</p>
+	<p class="p3">$(window).load(function(){})</p>
+	<p class="p2">2)多次使用：此方式在第一章讲过</p>
+	<p class="p2">3)简写方式</p>
+	<p class="p2">&nbsp;&nbsp;1)$(document).ready(function(){});可以简写成$(function(){})</p>
+	<p class="p2">&nbsp;&nbsp;2)$(document)也可以简写成$()。当$()不带参数时，默认参数就是document,所以，也可以简写为$().ready(function(){})</p>
+	<br/>
+	<p class="p1">二）事件绑定</p>
+	<p class="p2">在文档装载完成后，如果打算为元素绑定事件来完成某些操作，则可以使用bind()方法来对匹配元素进行特定事件的绑定，bind()方法使用格式为：</p>
+	<p class="p3"> bind(type[,data],fn);</p>
+	<p class="p2">第一个参数是事件类型，类型包括blur,focus,load,resize,scroll,unload,click....等，当然也可以是自定义名称</p>
+	<p class="p2">第二个参数为可选参数，作为event.data属性值传递给事件对象的额外数据对象</p>
+	<p class="p2">第三个参数是用来绑定的处理函数</p>
+	<p class="p2">1)基本效果：</p>
+	<p class="p2">&nbsp;示例：点击标题出现内容:</p>
+	<div id="panel1">
+		<h2 class="head">什么是jQuery</h2>
+		<div class="content">
+			<p class="p2">jQuery是继Prototype之后有一个优秀的Javascript库</p>
+		</div>
+ 	</div>
+ 	<p class="p2">2)加强效果</p>
+ 	<p class="p2">&nbsp;示例：点击出现内容，再点击内容消失</p>
+ 	<div id="panel2">
+ 		<h2 class="head">什么是jQuery</h2>
+		<div class="content">
+			<p class="p2">jQuery是继Prototype之后有一个优秀的Javascript库</p>
+		</div>
+ 	</div>
+ 	<p class="p2">3)改变绑定事件的类型</p>
+ 	<p class="p2">&nbsp;示例：将click事件换成click事件，鼠标移上去出现内容，移除鼠标内容消失</p>
+ 	<div id="panel3">
+ 		<h2 class="head">什么是jQuery</h2>
+		<div class="content">
+			<p class="p2">jQuery是继Prototype之后有一个优秀的Javascript库</p>
+		</div>
+ 	</div>
+ 	<p class="p2">4)简写绑定事件</p>
+ 	<p class="p2">&nbsp;jQuery提供了简写的方式，示例：将click事件换成click事件，鼠标移上去出现内容，移除鼠标内容消失</p>
+ 	<div id="panel4">
+ 		<h2 class="head">什么是jQuery</h2>
+		<div class="content">
+			<p class="p2">jQuery是继Prototype之后有一个优秀的Javascript库</p>
+		</div>
+ 	</div>
+ 	<br/>
+ 	<p class="p1">三）合成事件</p>
+ 	<p class="p2">jQuery有两个合成事件，hover()方法和toggle()方法，类似前面讲过的ready()方法，hover()方法和toggle()方法都属于jQuery的自定义方法</p>
+ 	<p class="p2">1)hover()方法</p>
+ 	<p class="p2">&nbsp;语法结构：hover(enter,leave)</p>
+ 	<p class="p2">hover()方法用于模拟光标悬停事件，当光标移动到元素上时，会触发指定的第一个函数(enter),当光标移出这个元素时，会触发指定的第二个函数(leave)，例子如下</p>
+ 	<div id="panel5">
+ 		<h2 class="head">什么是jQuery</h2>
+		<div class="content">
+			<p class="p2">jQuery是继Prototype之后有一个优秀的Javascript库</p>
+		</div>
+ 	</div>
+ 	<p class="p2">2)toggle()方法</p>
+ 	<p class="p2">&nbsp;语法结构：toggle(fn1,fn2,fn3...)</p>
+ 	<p class="p2">toggle()方法用于模拟鼠标连续单击事件，当第一次单击元素，触发指定的第一个函数，当第二次单击元素，触发第二个函数，依次触发，当触发完所有的元素之后，再从头循环。但是此方法在jQuery1.9之后就被取消了，所以版本1.9以上无法使用，现在toggle主要用于改变一个元素的状态，加入被绑定元素是显示的，那么就会变成隐藏</p>
+ 	<br/>
+ 	<p class="p1">四）事件冒泡</p>
+ 	<p class="p2">1)什么是冒泡：在页面上可以有多个事件，也可以多个元素响应同一事件。假设有一个元素在span标签里面，span标签绑定了click事件，span标签又在div标签里面，div标签也绑定了click事件，div标签又在body标签里面，body标签也绑定了click事件，那么当点击该元素时，这三个click就会依次响应，相应顺序分别是：span,div,body</p>
+ 	<p class="p2">2)事件冒泡引发的问题：事件冒泡可能会引发预料之外的效果，因此，有必要对事件的作用范围进行限制</p>
+ 	<p class="p2">&nbsp;&nbsp;1)事件限制</p>
+ 	<p class="p2">&nbsp;&nbsp;在程序中使用事件对象非常简单，只需要为函数填一个参数，例如：</p>
+ 	<p class="p3">$("element").bind("click",function(event){};)这样，当点击element元素时，事件对象就被创建了，这个事件对象只有事件处理函数才能访问到</p>
+ 	<p class="p2">&nbsp;&nbsp;2)停止事件冒泡</p>
+ 	<p class="p2">&nbsp;&nbsp;停止事件冒泡可以阻止事件中其他对象处理函数被执行，在jQuery中提供了stopPropagation()方法来停止事件冒泡，例如：</p>
+ 	<p class="p3">$("span").bind("click",function(event){</p>
+ 	<p class="p3">alert(11);</p>
+ 	<p class="p3">event.stopProparation();</p>
+ 	<p class="p3">});</p>
+ 	<p class="p2">&nbsp;&nbsp;3)阻止默认行为</p>
+ 	<p class="p2">&nbsp;&nbsp;网页中元素有自己的默认行为，例如，单击超链接后会跳转，单击提交会提交，有时需要阻止元素默认行为，jQuery中提供了preventDefault()方法来阻止元素默认行为，如</p>
+ 	<p class="p3">event.preventDefault;</p>
+ 	<p class="p2">&nbsp;&nbsp;4)事件捕获</p>
+ 	<p class="p2">&nbsp;&nbsp;事件捕获和事件冒泡恰好相反，是从最外层开始捕获,jQuery不支持事件捕获，如有需要，直接使用JS</p>
+ 	<br/><br/>
+	<script type="text/javascript">
+		//基本效果
+		$(function(){
+			$("#panel1 h2.head").bind("click",function(){
+				$(this).next().show();
+			})
+		
+
+		//加强效果
+		
+			$("#panel2 h2.head").bind("click",function(){
+				$content=$(this).next();
+				if ($content.is(":visible"))
+				{
+					$content.hide();
+				}
+				else
+				{
+					$content.show();
+				}
+			})
+		
+
+		//改变绑定事件的类型
+		
+			$("#panel3 h2.head").bind("mouseover",function(){
+				$(this).next().show();
+			}).bind("mouseout",function(){
+				$(this).next().hide();
+			});
+		
+
+		//简写绑定事件
+		
+			$("#panel4 h2.head").mouseover(function(){
+				$(this).next().show();
+			}).mouseout(function(){
+				$(this).next().hide();
+			});
+		
+
+		//hover()方法使用
+		
+			$("#panel5 h2.head").hover(function(){
+				$(this).next().show();
+			},function(){
+				$(this).next().hide();
+			});
+		
+
+		//toggle()方法使用
+		
+			$("#panel7 h2.head").toggle(
+				function(){
+					$(this).next().show();
+				},
+				function(){
+				$(this).next().hide();
+			})
+		})
+	</script>
+</body>
+</html>

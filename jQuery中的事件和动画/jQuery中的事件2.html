@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery中的事件2</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+		}
+		
+	</style>
+</head>
+<body>
+	<p class="p1">五）事件对象的属性</p>
+	<p class="p2">1)event.type：该方法的作用是可以获取到事件的类型，例如：</p>
+	<p class="p3">$("a").click(function(event){</p>
+	<p class="p3">alert(event.type);</p>
+	<p class="p3">return false;</p>
+	<p class="p3">});</p>
+	<p class="p3">弹出框内弹出的是"click"</p>
+	<p class="p2">2)event.preventDefault()方法：在jQuery中的事件1.html里面介绍过了，是阻止默认事件行为的方法</p>
+	<p class="p2">3)event.stopPropagation()方法：在jQuery中的事件1.html里面介绍过了，是阻止事件的冒泡</p>
+	<p class="p2">4)event.target：作用是获取到触发事件的元素，例如：</p>
+	<p class="p3">$("a[href='www.baidu.com']").click(function(event){</p>
+	<p class="p3">var tg=event.target;</p>
+	<p class="p3">alert(tg.href);</p>
+	<p class="p3">return false;</p>
+	<p class="p3">弹出框内弹出的是"www.baidu.com"</p>
+	<p class="p2">5)event.relatedTarget：在标准DOM中，mouseover和mouseout所发生的元素可以通过event.target来访问，相关元素是通过event.relatedTarget来访问的。</p>
+	<p class="p2">6)event.pageX和event.pageY：该方法是获取到光标相对于页面的x和y坐标，如果没有使用jQuer时，IE浏览器中是用event.x/event.y。如果页面上有滚动条，则还要加上滚动条的高度或宽度。</p>
+	<p class="p2">7)event.witch：该方法的作用是在鼠标单击事件中获取到鼠标的左，中，右键，在键盘事件中获取键盘的按键，例如：</p>
+	<p class="p3">例1）</p>
+	<p class="p3">$("a").mousedown(function(e){</p>
+	<p class="p3">alert(e.witch);		//1==鼠标左键；2==鼠标中键；3==鼠标右键</p>
+	<p class="p3">});</p>
+	<p class="p3">例2）</p>
+	<p class="p3">$("input").keyup(function(e){</p>
+	<p class="p3">alert(e.witch);		//获取键盘的按键</p>
+	<p class="p3">});</p>
+	<p class="p2">8)event.metaKey：针对不同浏览器键盘中的ctrl按键解释不同，jQuery也进行了封装，并规定用event.metaKey为键盘事件中获取ctrl键</p>
+	<br/>
+	<p class="p1">六）移除事件</p>
+	<p class="p2">在绑定事件过程中，不仅可以为同一元素绑定多个事件，也可以为多个元素绑定同一事件</p>
+	<p class="p2">1)unbind()方法</p>
+	<p class="p2">语法: unbind([type],[data]);</p>
+	<p class="p2">&nbsp;&nbsp;第一个参数是事件类型，第二个参数是将要移除函数</p>
+	<p class="p2">&nbsp;&nbsp;如果没有参数，则删除所有绑定事件</p>
+	<p class="p2">&nbsp;&nbsp;如果提供了事件类型作为参数，则只删除该类型的绑定事件</p>
+	<p class="p2">&nbsp;&nbsp;如果把在绑定时传递的处理函数作为第二个参数，则只有这个特定的事件处理函数会被删除</p>
+	<p class="p2">2)one()方法</p>
+	<p class="p2">对于只要触发一次，随后就立即解除绑定的情况，jQuery提供了一种间歇方法one()方法</p>
+	<br/>
+	<p class="p1">七）模拟操作</p>
+	<p class="p2">1)常用模拟</p>
+	<p class="p2">有时，需要通过模拟用户操作，来达到单击的效果，在jQuery中，可以使用trigger()方法完成模拟操作，例如</p>
+	<p class="p3">$("#btn").trigger("click");通过$("#btn").click();也可以达到同样效果</p>
+	<p class="p2">2)触发自定义事件</p>
+	<p class="p2">trigger()方法不仅能触发浏览器支持的具有相同名称的事件，也可以触发自定义名称的事件</p>
+	<p class="p2">3)传递数据</p>
+	<p class="p2">trigger(type,[data])方法有两个参数，第一个参数是要触发的事件的类型，第二个参数是要传递给事件处理函数的附加数据，以数组形式传递。</p>
+	<p class="p2">4)执行默认操作</p>
+	<p class="p2">&nbsp;&nbsp;1)trigger()方法触发事件后，会执行浏览器默认操作，如$("input").trigger("focus");</p>
+	<p class="p2">&nbsp;以上代码不仅会触发focus事件，也会是input元素本身得到焦点</p>
+	<p class="p2">&nbsp;&nbsp;2)如果只想触发focus事件，而不想执行浏览器默认操作，可以使用triggerHandler()方法，如</p>
+	<p class="p2">&nbsp;$("input").triggerHandler("focus");</p>
+	<br/>
+	<p class="p1">八）其他用法</p>
+	<p class="p2">1)绑定多个事件类型，例子如下</p>
+	<p class="p3">例：为元素一次性绑定多个事件类型</p>
+	<p class="p3">$(function(){</p>
+	<p class="p3">$("div").bind("mouseover mouseout",function(){</p>
+	<p class="p3">$(this).tiggleClass("over");</p>
+	<p class="p3">)};</p>
+	<p class="p3">)};</p>
+	<p class="p3">当光标滑入div元素时，该元素的class切换为"over"，当划出时，class恢复原来的值</p>
+	<p class="p2">2)添加事件命名空间，便于管理。见书P119</p>
+	<p class="p3">3)相同事件名称，不同命名空间执行方法。见书P119</p>
+
+</body>
+</html>
