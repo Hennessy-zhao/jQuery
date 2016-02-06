@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery中的动画</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+		}
+
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+		}
+		
+	</style>
+</head>
+<body>
+ 	<p class="p1">一）show()方法和hide()方法</p>
+ 	<p class="p2">1)show()方法和hide()方法</p>
+ 	<p class="p2">show()方法和hide()方法在前面也有介绍，主要是元素的隐藏和显示</p>
+ 	<p class="p2">2)show()方法和hide()方法让元素动起来</p>
+ 	<p class="p2">show()方法和hide()方法在不带任何参数的情况下，作用是立即隐藏或显示匹配的元素，不会有任何动画，如果希望在调用show方法时，元素慢慢的显示出来，可以为show()方法指定一个速度参数，例如slow，以下是各个关键词的显示时间</p>
+ 	<p class="p3">&nbsp;&nbsp;1)slow:600毫秒</p>
+ 	<p class="p3">&nbsp;&nbsp;2)normal:400毫秒</p>
+ 	<p class="p3">&nbsp;&nbsp;3)fase:200毫秒</p>
+ 	<p class="p3">&nbsp;&nbsp;4)自定义,如$("#id").show(1000);		//单位是毫秒</p>
+ 	<p class="p3">例子如下</p>
+ 	<div id="img1">
+ 		<img src="001.jpg" width="200px" height="200px">
+ 	</div>
+ 	<br/><br/>
+ 	<p class="p1">二）fadeIn方法和fadeOut()方法</p>
+ 	<p class="p2">与show()方法不同的是，fadeIn()和fadeOut()方法只会改变元素的不透明度。fadeOut()方法在制定的一段时间内降低不透明度，直到元素彻底消失,fadeIn()方法相反</p>
+ 	<div id="img2">
+ 		<img src="001.jpg" width="200px" height="200px">
+ 	</div>
+ 	<br/><br/>
+ 	<p class="p1">三）slideUp()方法和sildeDown()方法</p>
+ 	<p class="p2">slideUp()方法和slideDown()方法只会改变元素的高度。如果一个元素的display属性为none，当调用slideDown属性时，这个元素将由上至下延伸显示。slideUp()则相反，元素将由下到上缩短隐藏</p>
+ 	<div id="img3">
+ 		<img src="001.jpg" width="200px" height="200px">
+ 	</div>
+ 	<br/><br/>
+ 	<p class="p1">四）自定义动画方法animate()</p>
+
+ 	<br/><br/>
+
+ 	<script type="text/javascript">
+ 		//hide()方法和show()方法
+ 		$(function(){
+ 			$("#img1").hide();
+ 			$("#img1").show("slow");
+ 		});
+
+ 		//fadeIn()方法和fadeOut()方法
+ 		$(function(){
+ 			$("#img2").fadeOut(3000);
+ 			$("#img2").fadeIn(3000);
+ 		});
+
+ 		//slideDown()方法和sildeUp()方法
+ 		$(function(){
+ 			$("#img3").slideUp(3000);
+ 			$("#img3").slideDown(3000);
+ 		})
+ 	</script>
+</body>
+</html>
