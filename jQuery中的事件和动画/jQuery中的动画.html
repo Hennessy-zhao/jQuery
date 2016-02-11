@@ -21,6 +21,14 @@
 			font-family: 幼圆;
 			margin-left: 20px;
 		}
+
+		#panel1,#panel2,#panel3,#panel4,#panel5{
+			border:1px solid black;
+			position: relative;
+			width: 300px;
+			height: 300px;
+			background-color: yellow;
+		}
 		
 	</style>
 </head>
@@ -52,6 +60,30 @@
  	</div>
  	<br/><br/>
  	<p class="p1">四）自定义动画方法animate()</p>
+ 	<p class="p2">语法：animate(params,speed,callback);</p>
+ 	<p class="p2">params：一个包含样式属性及值的映射，比如{property1:"value1",property2:"value2"......}</p>
+ 	<p class="p2">speed：速度，可选。</p>
+ 	<p class="p2">callback：在动画完成时执行的函数，可选。</p>
+ 	<p class="p2">1)自定义简单动画：点击下面div框之后在页面上飘动</p>
+ 	<div id="panel1"></div>
+ 	<br/><br/>
+ 	<p class="p2">2)累加，累减动画</p>
+ 	<p class="p2">在先前的代码中，设置了{left:"1000px"}作为动画参数。如果在500之前加上“+=”或者“-=”符号即表示在当前位置累加或者累减</p>
+ 	<p class="p2">3)多重动画</p>
+ 	<p class="p2">&nbsp;&nbsp;1)同时执行多个动画</p>
+ 	<p class="p2">&nbsp;&nbsp;点击下面的div框架，则其同时向右向上运动</p>
+ 	<div id="panel2"></div>
+ 	<p class="p2">&nbsp;&nbsp;2)按顺序执行多个动画</p>
+ 	<p class="p2">&nbsp;&nbsp;点击下面的div框架，则其先向右运动，再向上运动</p>
+ 	<div id="panel3"></div>
+ 	<p class="p2">&nbsp;&nbsp;3)综合动画</p>
+ 	<p class="p2">&nbsp;&nbsp;点击下面的div框架，让他向右移动同时增加它的高度，并把不透明度从50%变换到100%，然后让他从上到下移动，同时宽度变大，当完成这些后以淡出的方式隐藏</p>
+ 	<div id="panel4"></div>
+ 	<br/><br/>
+ 	<p class="p1">五）动画回调函数</p>
+ 	<p class="p2">在上例中，如果想在最后一步切换元素的css样式，而不是隐藏元素，如果只是按照常规方式，将fallOut方法改为css，并不能达到想要的目的，在刚开始执行动画的时候，这个样式就被改变了，所以需要使用callback对非动画方法进行排队，只要把css写在最后一个动画的回调函数里面即可</p>
+ 	<div id="panel5"></div>
+
 
  	<br/><br/>
 
@@ -72,6 +104,48 @@
  		$(function(){
  			$("#img3").slideUp(3000);
  			$("#img3").slideDown(3000);
+ 		})
+
+ 		//自定义简单动画
+ 		$(function(){
+ 			$("#panel1").click(function(){
+ 				$(this).animate({left:"1000px"},3000);
+ 			})
+ 		})
+
+ 		//同时执行多个动画
+ 		$(function(){
+ 			$("#panel2").click(function(){
+ 				$(this).animate({left:"500px",top:"-500px"},3000);
+ 			})
+ 		})
+
+ 		//按顺序执行多个动画
+ 		$(function(){
+ 			$("#panel3").click(function(){
+ 				$(this).animate({left:"500px"},3000);
+ 				$(this).animate({top:"-500px"},3000);
+ 			})
+ 		})
+
+ 		//综合动画
+ 		$(function(){
+ 			$("#panel4").css("opacity","0.5");
+ 			$("#panel4").click(function(){
+ 				$(this).animate({left:"500px",height:"+=200px",opacity:"1"},3000)
+ 				.animate({top:"500px",width:"+=200px"},3000)
+ 				.fadeOut("slow");
+ 			})
+ 		})
+
+ 		//回调函数
+ 		$(function(){
+ 			$("#panel5").css("opacity","0.5");
+ 			$("#panel5").click(function(){
+ 				$(this).animate({left:"500px",height:"+=200px",opacity:"1"},3000,function(){
+ 					$(this).css("border","5px solid blue");
+ 				});
+ 			})
  		})
  	</script>
 </body>
