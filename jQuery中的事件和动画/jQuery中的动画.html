@@ -83,7 +83,44 @@
  	<p class="p1">五）动画回调函数</p>
  	<p class="p2">在上例中，如果想在最后一步切换元素的css样式，而不是隐藏元素，如果只是按照常规方式，将fallOut方法改为css，并不能达到想要的目的，在刚开始执行动画的时候，这个样式就被改变了，所以需要使用callback对非动画方法进行排队，只要把css写在最后一个动画的回调函数里面即可</p>
  	<div id="panel5"></div>
-
+ 	<br/><br/>
+ 	<p class="p1">六）停止动画和判断是否处于动画状态</p>
+ 	<p class="p2">1)停止元素的动画</p>
+ 	<p class="p2">&nbsp;停止元素的动画，使用stop()方法，语法为：stop([clearQueue],[gotoEnd]);</p>
+ 	<p class="p2">&nbsp;两个参数都是可选参数，为Boolean值。</p>
+ 	<p class="p2">&nbsp;clearQueue代表是否要清空未执行完的动画队列</p>
+ 	<p class="p2">&nbsp;gotoEnd代表是否直接将正在执行的动画跳转到末状态</p>
+ 	<p class="p2">2)判断元素是否处于动画状态，代码如下</p>
+ 	<p class="p3">if(!$(element).is(":animated")){	//判断元素书是否处于动画状态</p>
+ 	<p class="p3">		//如果当前没有执行动画，则添加新动画</p>
+ 	<p class="p3">}</p>
+ 	<p class="p2">3)延迟动画</p>
+ 	<p class="p2">&nbsp;使用delay()方法，使用方法为delay(1000)</p>
+ 	<p class="p1">七）其他动画方法</p>
+ 	<p class="p2">1)toggle()方法</p>
+ 	<p class="p2">&nbsp;toggle()方法可以切换元素的可见状态。用来代替hide()方法和show()方法</p>
+ 	<p class="p2">2)slideToggle()方法</p>
+ 	<p class="p2">&nbsp;此方法通过高度变化来切换元素的可见性。这个动画只调整元素高度。用来代替slideUp()和slideDown()方法</p>
+ 	<p class="p2">3)fadeTo()方法</p>
+ 	<p class="p2">&nbsp;此方法可以把元素的不透明度以渐进方式调整到指定的值。这个动画只调整元素的不透明度，即匹配元素的高度和宽度不会发生变化。如</p>
+ 	<p class="p3">$(this).fadeTo(600,0.2);</p>
+ 	<p class="p2">4)fadeToggle()方法</p>
+ 	<p class="p2">&nbsp;此方法通过不透明度变化来切换匹配元素的可见性。这个动画效果只调整元素的不透明度。用来代替fadeIn()方法和fadeOut()方法</p>
+ 	<p class="p1">八）动画方法概括</p>
+ 	<p class="p2">总结见上面和书132</p>
+ 	<p class="p2">注意：animate()方法，可以代替其他所有的动画方法</p>
+ 	<p class="p2">1)代替show()方法</p>
+ 	<p class="p3">$("p").animate({height:"show",width:"show",opacity:"show"},400);</p>
+ 	<p class="p3">等价于$("p").show(400);</p>
+ 	<p class="p2">2)代替fadeIn()方法</p>
+ 	<p class="p3">$("p").animate({opacity:"show"},400);</p>
+ 	<p class="p3">等价于$("p").fadeIn(400);</p>
+ 	<p class="p2">3)代替slideDown()方法</p>
+ 	<p class="p3">$("p").animate({height:"show"},400);</p>
+ 	<p class="p3">等价于$("p").slideDown(400);</p>
+ 	<p class="p2">4)代替fadeTo()方法</p>
+ 	<p class="p3">$("p").animate({opacity;"0.6"},400);</p>
+ 	<p class="p3">等价于$("p").fadeTo(400,0.6);</p>
 
  	<br/><br/>
 
