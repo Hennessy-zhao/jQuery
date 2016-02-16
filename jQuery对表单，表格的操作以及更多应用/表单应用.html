@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表单应用</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+			color: black;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+			color: black;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+			color: black;
+		}
+
+		.focus{
+			border:1px solid #f00;
+			background:#fcc;
+		}
+		.bigger,.smaller,.up,.down{
+			background-color: yellow;
+			margin: 5px;
+			border:1px solid black;
+		}
+	</style>
+</head>
+<body>
+ 	<p class="p1">一）单行文本框应用</p>
+ 	<p class="p2">文本框是表单域中最基本的元素，基于文本框的应用有很多，此处只简单介绍其中的一个应用--获取和失去焦点改变样式，例子如下</p>
+ 	<form action="#" method="post">
+ 		<fieldset>
+ 			<legend>个人基本信息</legend>
+ 			<div>
+ 				<label for="username">名称：</label>
+ 				<input id="username" type="text">
+ 			</div>
+ 			<div>
+ 				<label for="pass">密码：</label>
+ 				<input id="pass" type="password">
+ 			</div>
+ 			<div>
+ 				<label for="msg">详细信息：</label>
+ 				<textarea id="msg"></textarea>
+ 			</div>
+ 		</fieldset>
+ 	</form>
+ 	<br/><br/>
+ 	<p class="p1">二）多行文本框应用</p>
+ 	<p class="p2">1)高度变化</p>
+ 	<p class="p2">当单击放大，如果高度小于500px，则增大50px;点击缩小，如果高度大于50px则减去50px。如下</p>
+ 	<form>
+ 		<div class="msg">
+ 			<div class="msg_caption">
+ 				<span class="bigger">放大</span>
+ 				<span class="smaller">缩小</span>
+ 			</div>
+ 			<div>
+ 				<textarea id="comment" rows="8" cols="20">多行文本框高度变化</textarea>
+ 			</div>
+ 		</div>
+ 	</form>
+ 	<br/><br/>
+ 	<p class="p2">2)滚动条高度变化</p>
+ 	<p class="p2">与上面控制高度的方法相同，不过不是height而是scrollTop</p>
+ 	<form>
+ 		<div class="msg">
+ 			<div class="msg_caption">
+ 				<span class="up">向上</span>
+ 				<span class="down">向下</span>
+ 			</div>
+ 			<div>
+ 				<textarea id="comment1" rows="8" cols="20">多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化多行文本框高度变化</textarea>
+ 			</div>
+ 		</div>
+ 	</form>
+ 	<br/><br/>
+ 	<p class="p1">三）复选框应用</p>
+ 	<p class="p2">对复选框最基本的应用，就是对复选框进行全选，反选和全不选择。复杂的选择需要和选项挂钩，例子如下</p>
+ 	<input type="checkbox" name="items" value="足球">足球
+ 	<input type="checkbox" name="items" value="篮球">篮球
+ 	<input type="checkbox" name="items" value="羽毛球">羽毛球
+ 	<input type="checkbox" name="items" value="乒乓球">乒乓球
+ 	<input type="button" id="checkAll" value="全选">
+ 	<input type="button" id="checkNo" value="全不选">
+ 	<input type="button" id="checkRev" value="反选">
+ 	<input type="button" id="send" value="提交">
+ 	<br/><br/>
+ 	<p class="p1">四）下拉框应用</p>
+ 	<p class="p2">此部分我认为不重要，详见书149</p>
+ 	<br/><br/>
+ 	<p class="p1">五）表单验证</p>
+ 	<p class="p2">例子如下</p>
+ 	<form method="post" action="#">
+ 		<div class="int">
+ 			<label for="username">用户名</label>
+ 			<input type="text" id="username" class="required">
+ 		</div>
+ 		<div class="int">
+ 			<label for="email">邮箱</label>
+ 			<input type="text" id="email" class="required">
+ 		</div>
+ 		<div class="int">
+ 			<label for="personinfo">个人介绍</label>
+ 			<input type="text" id="personinfo">
+ 		</div>
+ 		<div class="sub">
+ 			<input type="submit" value="提交" id="send">
+ 			<input type="reset" id="res">
+ 		</div>
+ 	</form>
+
+
+
+
+ 	<script type="text/javascript">
+ 		//单行文本框应用
+ 		$(function(){
+ 			$(":input").focus(function(){
+ 				$(this).addClass("focus");
+ 			}).blur(function(){
+ 				$(this).removeClass("focus");
+ 			})
+ 		});
+
+
+
+ 		//多行文本框高度变化
+ 		$(function(){
+ 			$comment=$("#comment");
+ 			$(".bigger").click(function(){
+ 				if ($comment.height()<500) 
+ 				{
+ 					$comment.animate({height:"+=50"},400);
+ 				};
+ 			});
+ 			$(".smaller").click(function(){
+ 				if ($comment.height()>50) 
+ 				{
+ 					$comment.animate({height:"-=50"},400);
+ 				};
+ 			})
+ 		})
+
+ 	//滚动条高度变化
+ 	$(function(){
+ 		var $comment=$("#comment1");
+ 		$(".up").click(function(){
+ 			if (!$comment.is(":animated")) 
+ 			{
+ 				$comment.animate({scrollTop:"-=50"},400);
+ 			};
+ 		});
+ 		$(".down").click(function(){
+ 			if (!$comment.is(":animated")) 
+ 			{
+ 				$comment.animate({scrollTop:"+=50"},400);
+ 			};
+ 		})
+ 	})
+
+
+ 	//复选框
+ 	$(function(){
+ 		//全选
+ 		$("#checkAll").click(function(){
+ 			$('[name=items]:checkbox').attr("checked",true);
+ 		})
+ 		//全不选
+ 		$("#checkNo").click(function(){
+ 			$('[name=items]:checkbox').attr("checked",false);
+ 		})
+ 		//反选
+ 		$("#checkRev").click(function(){
+ 			$('[name=items]:checkbox').each(function(){
+ 				this.checked=!this.checked;
+ 			})
+ 		})
+ 		//提交
+ 		$("#send").click(function(){
+ 		 	var str="您选择的是";
+ 			$('[name=items]:checkbox:checked').each(function(){
+ 				str+=$(this).val()+"\r\n";
+ 			});
+ 			alert(str);
+ 		})
+ 	})
+ 	</script>
+</body>
+</html>
