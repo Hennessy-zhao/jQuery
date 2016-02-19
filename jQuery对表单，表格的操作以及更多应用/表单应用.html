@@ -115,7 +115,7 @@
  			<input type="text" id="personinfo">
  		</div>
  		<div class="sub">
- 			<input type="submit" value="提交" id="send">
+ 			<input type="submit" value="提交" id="send1">
  			<input type="reset" id="res">
  		</div>
  	</form>
@@ -193,6 +193,65 @@
  				str+=$(this).val()+"\r\n";
  			});
  			alert(str);
+ 		})
+ 	})
+
+ 	//表单验证
+ 	$(function(){
+ 		//必须填写的加上*提示
+ 		$("form input.required").each(function(){
+ 			var $require=$("<strong>*</strong>");
+ 			$(this).parent().append($require);
+ 		});
+
+ 		//判断用户名和邮箱
+ 		$("form :input").blur(function(){
+ 			$parent=$(this).parent();
+ 			$parent.find(".errorMsg").remove();
+ 			if ($(this).is("#username")) 
+ 			{
+ 				if (this.value==''||this.value.length<6) 
+	 			{
+	 				var errorMsg="请输入至少六位的用户名";
+	 				$parent.append("<span class='errorMsg'>"+errorMsg+"</span>");
+	 			}
+	 			else
+	 			{
+	 				var errorMsg="输入正确";
+	 				$parent.append("<span>"+errorMsg+"</span>");
+	 			}
+ 			}
+ 			else if ($(this).is("#email"))
+ 			{
+ 				if (this.value==''||(this.value!=''&&!/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value))) 
+ 				{
+ 					var errorMsg="请输入正确的邮箱";
+	 				$parent.append("<span class='errorMsg'>"+errorMsg+"</span>");
+	 			}
+	 			else
+	 			{
+	 				var errorMsg="输入正确";
+	 				$parent.append("<span>"+errorMsg+"</span>");
+	 			}
+ 			}
+
+
+ 			
+ 		})
+
+ 		$("#send1").click(function(){
+ 			$("form .required:input").trigger("blur");
+ 			var errorNum=$('form .errorMsg').length;
+ 			if (errorNum) 
+ 			{
+ 				alert("提交失败");
+ 				return false;
+ 			}
+ 			else
+ 			{
+ 				alert("提交成功！！");
+ 				return true;
+ 			}
  		})
  	})
  	</script>
