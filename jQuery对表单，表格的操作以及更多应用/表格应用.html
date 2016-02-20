@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表格应用</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+			color: black;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+			color: black;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+			color: black;
+		}
+
+		.even{
+			background-color: #FFF38F;
+		}
+
+		.odd{
+			background-color: #FFFFEE;
+		}
+
+		.selected{
+			background-color: blue;
+		}
+
+	</style>
+</head>
+<body>
+	<p class="p2">以下为一个表格</p>
+	<form action="#" method="post">
+	<table>
+		<thead>
+			<tr>
+				<th>复选框</th>
+				<th>单选框</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>暂住地</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox" value="0" name="name"></td>
+				<td><input type="radio" value="0" name="name"></td>
+				<td>张山</td>
+				<td>男</td>
+				<td>浙江宁波</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="1" name="name"></td>
+				<td><input type="radio" value="1" name="name"></td>
+				<td>李四</td>
+				<td>女</td>
+				<td>浙江杭州</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="2" name="name"></td>
+				<td><input type="radio" value="2" name="name"></td>
+				<td>王五</td>
+				<td>男</td>
+				<td>湖南长沙</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="3" name="name"></td>
+				<td><input type="radio" value="3" name="name"></td>
+				<td>赵六</td>
+				<td>男</td>
+				<td>浙江温州</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="4" name="name"></td>
+				<td><input type="radio" value="4" name="name"></td>
+				<td>Rain</td>
+				<td>男</td>
+				<td>浙江杭州</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="5" name="name"></td>
+				<td><input type="radio" value="5" name="name"></td>
+				<td>MaxMan</td>
+				<td>女</td>
+				<td>浙江杭州</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/><br/>
+	</form>
+	<p class="p1">一）表格变色</p>
+	<p class="p2">1)普通的隔行变色</p>
+	<p class="p2">点击按钮隔行变色，将某一行变成高亮状态</p>
+	<button id="button1">隔行变色</button>
+	<button id="button2">某一行变得高亮</button>
+	<p class="p2">2)单选框控制表格行高亮</p>
+	<p class="p2">当单击某一行后，此行被选中，高亮显示，并且单选框被选中</p>
+	<p class="p2">3)复选框控制表格变得高亮</p>
+	<p class="p2">由于单选框和复选框功能不能同时实现，可根据自己的要求对代码进行注释来选取自己要求的样式</p>
+	<br/><br/><br/>
+	<table>
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>暂住地</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="parent" id="row1">
+				<td colspan="3">前台设计</td>
+			</tr>
+			<tr class="child_row1">
+				<td>张山</td>
+				<td>男</td>
+				<td>浙江宁波</td>
+			</tr>
+			<tr class="child_row1">
+				<td>李四</td>
+				<td>女</td>
+				<td>浙江杭州</td>
+			</tr>
+			<tr class="parent" id="row2">
+				<td colspan="3">前台开发</td>
+			</tr>
+			<tr class="child_row2">
+				<td>王五</td>
+				<td>男</td>
+				<td>湖南长沙</td>
+			</tr>
+			<tr class="child_row2">
+				<td>赵六</td>
+				<td>男</td>
+				<td>浙江温州</td>
+			</tr>
+			<tr class="parent" id="row3">
+				<td colspan="3">后台开发</td>
+			</tr>
+			<tr class="child_row3">
+				<td>Rain</td>
+				<td>男</td>
+				<td>浙江杭州</td>
+			</tr>
+			<tr class="child_row3">
+				<td>MaxMan</td>
+				<td>女</td>
+				<td>浙江杭州</td>
+			</tr>
+		</tbody>
+	</table>
+	<p class="p1">二）表格展开关闭</p>
+	<p class="p2">表格功能实现展开与关闭，表格在上面</p>
+	<br/><br/>
+	<p class="p1">三）表格内容筛选</p>
+	<p class="p2">在下面框内输入需要筛选的内容</p>
+	<form action="#" method="post">
+		<input type="text" id="filterName">
+	</form>
+	<table class="filterName">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>暂住地</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>张山</td>
+				<td>男</td>
+				<td>浙江宁波</td>
+			</tr>
+			<tr>
+				<td>李四</td>
+				<td>女</td>
+				<td>浙江杭州</td>
+			</tr>
+			<tr>
+				<td>王五</td>
+				<td>男</td>
+				<td>湖南长沙</td>
+			</tr>
+			<tr>
+				<td>赵六</td>
+				<td>男</td>
+				<td>浙江温州</td>
+			</tr>
+			<tr>
+				<td>Rain</td>
+				<td>男</td>
+				<td>浙江杭州</td>
+			</tr>
+			<tr>
+				<td>MaxMan</td>
+				<td>女</td>
+				<td>浙江杭州</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<script type="text/javascript">
+		$(function(){
+			//普通隔行变色
+			$("#button1").click(function(){
+				$("tbody>tr:even").addClass("even");
+				$("tbody>tr:odd").addClass("odd");
+			});
+
+			//某一行高亮
+			$("#button2").click(function(){
+				$("tbody>tr:contains('赵六')").addClass("selected");
+			});
+
+			//单选框控制表格行高亮
+			$("table :radio:checked").parent().parent().addClass("selected");
+			$("tbody>tr").click(function(){
+				$(this)
+				.addClass("selected")
+				.siblings().removeClass("selected")
+				.end()
+				.find(":radio").attr("checked",true);
+			});
+
+			//复选框控制表格行高亮
+			$("table :checkbox:checked").parent().parent().addClass("selected");
+			$("tbody>tr").click(function(){
+				if ($(this).hasClass('selected')) 
+				{
+					$(this)
+					.removeClass("selected")
+					.find(":checkbox").attr("checked",false);
+				}
+				else
+				{
+					$(this)
+					.addClass("selected")
+					.find(":checkbox").attr("checked",true);
+				}
+			})
+
+
+		});
+
+		$(function(){
+			$("tr.parent").click(function(){
+				$(this)
+				.toggleClass("selected")
+				.siblings(".child_"+this.id).toggle();
+			}).click();					//如果需要一打开默认收缩则加上click()
+		})
+
+
+		//表格筛选
+		$(function(){
+			$("#filterName").keyup(function(){
+				$("table.filterName tbody tr").hide()
+				.filter(":contains('"+($(this).val())+"')").show();
+			}).keyup();			//DOM加载完成时，绑定事件完成之后立即触发
+		})
+	</script>
+</body>
+</html>
