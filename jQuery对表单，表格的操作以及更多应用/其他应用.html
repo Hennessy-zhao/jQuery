@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src=" ../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+			color: black;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+			color: black;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+			color: black;
+		}
+
+		.bigger,.smaller{
+			border:1px solid black;
+			background-color: blue;
+			margin:20px;
+			padding: 5px;
+		}
+
+		#para{
+			font-size: 12px;
+		}
+	</style>
+</head>
+<body>
+	<p class="p1">一）网页字体大小</p>
+	<p class="p2">例子如下</p>
+	<div class="msg">
+		<div class="msg_caption">
+			<span class="bigger">放大</span>
+			<span class="smaller">缩小</span>
+		</div>
+		<div>
+			<p id="para">
+				lalalaalalalalaalsdfhjhtgfdsafchjbskdnlmfgfsvdcdvsfhm;gmksdacdvfbgnnbvdscgugijo;jiuhygtgduhfijog;k
+			</p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function(){
+			$("span").click(function(){
+				var thisEle=$("#para").css("font-size");
+				var textfontSize=parseInt(thisEle,10);
+				var unit=thisEle.slice(-2);			//获取字体大小的单位px;
+				var cName=$(this).attr("class");
+				if (cName=="bigger") 
+				{
+					if (textfontSize<=22) 
+					{
+						textfontSize+=2;
+					}
+				}
+				else if (cName=="smaller") 
+				{
+					if (textfontSize>=12) 
+					{
+						textfontSize-=2;
+					}
+				}
+				$("#para").css("font-size",textfontSize+unit);
+			})
+		})
+	</script>
+</body>
+</html>
