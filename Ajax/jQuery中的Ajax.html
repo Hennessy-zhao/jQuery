@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery中的Ajax</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script type="text/javascript" src="xuyaohua../jQuery/jquery-2.2.0.js"></script>			<!--../代表上级目录-->
+	<style type="text/css">
+		p.p1{
+			font-family: 幼圆;
+			font-size: 1.6em;
+			margin-left: 10px;
+			color: black;
+		}
+
+		p.p2{
+			font-family: 幼圆;
+			font-size: 1.3em;
+			margin-left: 10px;
+			color: black;
+		}
+		p.p3{
+			font-family: 幼圆;
+			margin-left: 20px;
+			color: black;
+		}
+
+	</style>
+</head>
+<body>
+	<p class="p1">由于Ajax需要环境，所以将Ajax放在E:PHP/xampp/htdocs/Ajax里面</p>
+	button id="button1">Ajax获取</button>
+	<div class="comment">已有评论</div>
+	<div class="resText"></div>
+
+	<script type="text/javascript">
+		$(function(){
+			$("#button1").click(function(){
+				$(".resText").load("test.html");
+			})
+		})
+	</script>
+</body>
+</html>
